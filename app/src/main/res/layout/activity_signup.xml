@@ -24,7 +24,6 @@
                 android:layout_marginTop="48dp"
                 tools:srcCompat="@tools:sample/avatars" />
 
-            <!-- Center "Capsular" horizontally in this horizontal LinearLayout -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -68,7 +67,7 @@
                 android:ems="10"
                 android:background="@drawable/edittext_background"
                 android:inputType="textPassword"
-                android:padding="16dp" />  <!-- And here as well -->
+                android:padding="16dp" />
 
 
             <androidx.appcompat.widget.AppCompatButton

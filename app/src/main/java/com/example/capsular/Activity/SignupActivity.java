@@ -2,12 +2,17 @@ package com.example.capsular.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.capsular.R;
 import com.example.capsular.databinding.ActivitySignupBinding;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
-public class SignupActivity extends BaseActivity {
+public class SignupActivity extends AppCompatActivity {
 
     private ActivitySignupBinding binding;
 
@@ -17,78 +22,31 @@ public class SignupActivity extends BaseActivity {
         binding = ActivitySignupBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        mAuth = FirebaseAuth.getInstance();
-
-        setSignupListener();
-        setLoginRedirectListener();
+        binding.signupBtn.setOnClickListener(v -> performSignup());
     }
 
-    private void setSignupListener() {
-        binding.signupBtn.setOnClickListener(view -> {
-            String email = binding.userEdt.getText().toString().trim();
-            String password = binding.passEdt.getText().toString().trim();
+    private void performSignup() {
+        String email = binding.userEdt.getText().toString().trim();
+        String password = binding.passEdt.getText().toString().trim();
 
-            // Input Validation
-            if (email.isEmpty()) {
-                showError("Email cannot be empty");
-                return;
-            }
-
-            if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                showError("Enter a valid email address");
-                return;
-            }
-
-            if (password.isEmpty()) {
-                showError("Password cannot be empty");
-                return;
-            }
-
-            if (password.length() < 6) {
-                showError("Password must be at least 6 characters");
-                return;
-            }
-
-            // Proceed with Firebase Signup
-            mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
-                if (task.isSuccessful()) {
-                    FirebaseUser user = mAuth.getCurrentUser();
-                    navigateToMainActivity(user);
-                } else {
-                    showError("Signup failed: " + task.getException().getMessage());
-                }
-            });
-        });
-    }
-
-    private void setLoginRedirectListener() {
-        binding.textView3.setOnClickListener(view -> {
-            // Redirect to LoginActivity
-            Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
-            startActivity(intent);
-        });
-    }
-
-    private void navigateToMainActivity(FirebaseUser user) {
-        if (user != null) {
-            Intent intent = new Intent(SignupActivity.this, MainActivity.class);
-            startActivity(intent);
-            finish();
+        if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
+            showErrorDialog("Email and Password cannot be empty");
+            return;
         }
+
+        Log.d("SignupActivity", "Signup attempt with email: " + email);
+
+        // Simulate successful signup
+        Intent intent = new Intent(SignupActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 
-    private void showError(String message) {
-        new androidx.appcompat.app.AlertDialog.Builder(this)
-                .setTitle("Error")
+    private void showErrorDialog(String message) {
+        new AlertDialog.Builder(this)
+                .setTitle("Signup Failed")
                 .setMessage(message)
                 .setPositiveButton("OK", null)
                 .show();
-    }
-
-    @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
-        startActivity(intent);
-        finish(); // Prevent returning to SignupActivity
     }
 }
