@@ -28,6 +28,12 @@ public class LoginActivity extends AppCompatActivity {
                 performLogin();
             }
         });
+        binding.facebookSignInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setContentView(R.layout.activity_signup);
+            }
+        });
     }
 
     private void performLogin() {
@@ -46,7 +52,6 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-
     private void showErrorDialog(String message) {
         new AlertDialog.Builder(this)
                 .setTitle("Login Failed")

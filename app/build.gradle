@@ -5,11 +5,11 @@ plugins {
 
 android {
     namespace 'com.example.capsular'
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         applicationId "com.example.capsular"
-        minSdk 25
+        minSdk 33
         targetSdk 34
         versionCode 1
         versionName "1.0"
@@ -43,14 +43,12 @@ dependencies {
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
+    implementation platform('com.google.firebase:firebase-bom:32.7.0')
     implementation 'com.google.code.gson:gson:2.9.1'
-    implementation 'com.google.firebase:firebase-auth:22.3.0'
-    implementation 'com.google.firebase:firebase-auth:22.1.0'
+    implementation 'com.google.firebase:firebase-auth'
     implementation 'com.google.android.gms:play-services-auth:20.7.0'
     implementation 'com.facebook.android:facebook-login:15.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation platform('com.google.firebase:firebase-bom:31.5.0')
     implementation 'com.google.firebase:firebase-auth-ktx'
-    implementation 'com.google.android.gms:play-services-auth:20.5.0'
 
 }
