@@ -39,7 +39,6 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        // TODO: Replace this with your custom authentication logic
         Log.d("LoginActivity", "Login attempt with email: " + email);
 
         // Simulate successful login
