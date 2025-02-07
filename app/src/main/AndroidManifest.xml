@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <!-- Permissions -->
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -14,28 +14,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Capsular"
         tools:targetApi="31">
-        <activity
-            android:name=".Activity.SignupActivity2"
-            android:exported="false" />
-        <!-- MainActivity -->
-        <activity
-            android:name=".Activity.MainActivity"
-            android:exported="false" /> <!-- BaseActivity -->
-        <activity
-            android:name=".Activity.BaseActivity"
-            android:exported="false" /> <!-- SignupActivity -->
-        <activity
-            android:name=".Activity.SignupActivity"
-            android:exported="false" /> <!-- LoginActivity (Launcher Activity) -->
+
         <activity
             android:name=".Activity.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".Activity.MainActivity" android:exported="false"/>
+        <activity android:name=".Activity.BaseActivity" android:exported="false"/>
+        <activity android:name=".Activity.SignupActivity" android:exported="false"/>
+
     </application>
 
 </manifest>

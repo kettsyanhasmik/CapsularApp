@@ -2,6 +2,8 @@ package com.example.capsular.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
+
 import com.example.capsular.databinding.ActivitySignupBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -9,15 +11,12 @@ import com.google.firebase.auth.FirebaseUser;
 public class SignupActivity extends BaseActivity {
 
     private ActivitySignupBinding binding;
-    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivitySignupBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        mAuth = FirebaseAuth.getInstance();
 
         setSignupListener();
         setLoginRedirectListener();
@@ -38,12 +37,7 @@ public class SignupActivity extends BaseActivity {
                 return;
             }
 
-            if (password.isEmpty()) {
-                showError("Password cannot be empty");
-                return;
-            }
-
-            if (password.length() < 6) {
+            if (password.isEmpty() || password.length() < 6) {
                 showError("Password must be at least 6 characters");
                 return;
             }
@@ -75,18 +69,6 @@ public class SignupActivity extends BaseActivity {
     }
 
     private void showError(String message) {
-        new androidx.appcompat.app.AlertDialog.Builder(this)
-                .setTitle("Error")
-                .setMessage(message)
-                .setPositiveButton("OK", null)
-                .show();
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
-        startActivity(intent);
-        finish();
+        Toast.makeText(SignupActivity.this, message, Toast.LENGTH_SHORT).show();
     }
 }
