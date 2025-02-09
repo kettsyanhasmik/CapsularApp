@@ -50,7 +50,9 @@ public class LoginActivity extends AppCompatActivity {
 
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                Log.d("LoginActivity", "Login successful, switching to HomeActivity");
+
+                Intent intent = new Intent(LoginActivity.this, HomeActivity.class); // Switched to HomeActivity
                 startActivity(intent);
                 finish();
             } else {
