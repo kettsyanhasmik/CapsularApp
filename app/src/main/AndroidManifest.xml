@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Capsular"
         tools:targetApi="31">
         <activity
+            android:name=".Activity.ProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activity.HomeActivity"
             android:exported="false" />
         <activity
