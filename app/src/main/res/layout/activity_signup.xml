@@ -55,7 +55,7 @@
                 android:ems="10"
                 android:background="@drawable/edittext_background"
                 android:inputType="text"
-                android:padding="16dp" />  <!-- Add this to create space inside -->
+                android:padding="16dp" />
 
             <EditText
                 android:id="@+id/passEdt"

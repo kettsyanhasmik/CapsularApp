@@ -11,12 +11,17 @@ import com.google.firebase.auth.FirebaseUser;
 public class SignupActivity extends BaseActivity {
 
     private ActivitySignupBinding binding;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivitySignupBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        mAuth = FirebaseAuth.getInstance();
+
+        binding.passEdt.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD);
 
         setSignupListener();
         setLoginRedirectListener();

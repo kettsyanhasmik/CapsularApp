@@ -27,6 +27,8 @@ public class LoginActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
+        binding.passEdt.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD);
+
         binding.loginBtn.setOnClickListener(v -> performLogin());
 
         binding.signupRedirectText.setOnClickListener(v -> {
@@ -51,7 +53,6 @@ public class LoginActivity extends AppCompatActivity {
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 Log.d("LoginActivity", "Login successful, switching to HomeActivity");
-
                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class); // Switched to HomeActivity
                 startActivity(intent);
                 finish();
@@ -91,7 +92,6 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         cancelButton.setOnClickListener(v -> dialog.dismiss());
-
         dialog.show();
     }
 
